@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Stars They Already Earned — Starbucks Rewards case study</title>
+<meta name="description" content="A zero-discount personalisation experiment for low-frequency Starbucks Rewards members. Independent marketing analytics case study.">
+<style>
+  :root{
+    --green:#00704A; --dark:#1E3932; --sand:#C4A661; --red:#B4413C;
+    --ink:#12211C; --body:#3F4B47; --mute:#7A8783; --line:#E3E9E6; --bg:#FBFCFC;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--body);
+       font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{color:var(--ink);line-height:1.22;letter-spacing:-.018em}
+  a{color:var(--green)}
+
+  header{background:var(--dark);color:#fff;padding:76px 0 60px;
+         background-image:radial-gradient(1000px 400px at 82% -12%,rgba(0,112,74,.55),transparent)}
+  header .wrap{max-width:820px}
+  .eyebrow{font-size:12px;letter-spacing:.19em;text-transform:uppercase;
+           color:#8FCBB2;font-weight:600;margin:0 0 18px}
+  header h1{color:#fff;font-size:clamp(34px,5.6vw,54px);margin:0 0 16px;font-weight:800}
+  header .sub{font-size:clamp(17px,2.3vw,21px);color:#C9DDD5;margin:0 0 30px;max-width:640px}
+  .meta{font-size:14px;color:#93B3A8;border-top:1px solid rgba(255,255,255,.14);
+        padding-top:20px;margin-top:8px}
+  .btns{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 0}
+  .btn{display:inline-block;padding:11px 20px;border-radius:7px;font-size:15px;
+       font-weight:600;text-decoration:none;transition:.15s}
+  .btn-p{background:#fff;color:var(--dark)}
+  .btn-p:hover{background:#E8F2EE}
+  .btn-s{border:1px solid rgba(255,255,255,.32);color:#fff}
+  .btn-s:hover{background:rgba(255,255,255,.1)}
+
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:0}
+  h2{font-size:28px;margin:0 0 6px;font-weight:750}
+  .kicker{font-size:12.5px;letter-spacing:.15em;text-transform:uppercase;
+          color:var(--green);font-weight:700;margin:0 0 10px}
+  p{margin:0 0 18px}
+
+  .pull{background:#fff;border-left:4px solid var(--green);border-radius:0 10px 10px 0;
+        padding:22px 26px;margin:26px 0;box-shadow:0 1px 3px rgba(20,40,32,.05)}
+  .pull p:last-child{margin-bottom:0}
+  .pull strong{color:var(--ink)}
+  .quote{font-size:19px;line-height:1.55;color:var(--ink);font-weight:500}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:26px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:20px}
+  .card .n{font-size:29px;font-weight:800;color:var(--green);line-height:1.1;
+           letter-spacing:-.02em;margin-bottom:5px}
+  .card .n.red{color:var(--red)}
+  .card .l{font-size:14px;color:var(--body);line-height:1.45}
+
+  figure{margin:28px 0}
+  figure img{width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;display:block}
+  figcaption{font-size:13.5px;color:var(--mute);margin-top:10px;text-align:center}
+
+  table{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px;background:#fff}
+  th{background:var(--dark);color:#fff;text-align:left;padding:11px 14px;font-weight:600;font-size:14px}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.neg{color:var(--red);font-weight:600}
+  td.pos{color:var(--green);font-weight:600}
+
+  code{background:#EEF3F1;padding:2px 6px;border-radius:4px;font-size:14px;
+       font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#2F4A40}
+
+  .note{font-size:14.5px;color:var(--mute);background:#F4F7F6;border-radius:9px;padding:16px 18px}
+  footer{padding:46px 0 66px;font-size:14px;color:var(--mute)}
+  footer a{color:var(--green)}
+  .disc{font-size:13px;color:var(--mute);margin-top:26px;line-height:1.6}
+  @media(max-width:560px){section{padding:42px 0}h2{font-size:24px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Marketing analytics &middot; Independent case study</p>
+    <h1>The Stars They Already Earned</h1>
+    <p class="sub">Growing profitable frequency among low-frequency Starbucks Rewards members — without a discount.</p>
+    <div class="btns">
+      <a class="btn btn-p" href="https://github.com/phay2712-web/starbucks-rewards-incrementality">View the analysis on GitHub</a>
+      <a class="btn btn-s" href="#finding">Read the finding</a>
+    </div>
+    <p class="meta">August 2026 &middot; Based on public information and simulated data. Not affiliated with Starbucks Corporation.</p>
+  </div>
+</header>
+
+<section id="finding">
+  <div class="wrap">
+    <p class="kicker">The finding</p>
+    <h2>A mechanic hiding in the program terms</h2>
+    <p>On <strong>10 March 2026</strong> Starbucks relaunched Rewards with three tiers. Buried in the terms is a rule that applies <em>only</em> to the entry tier:</p>
+    <div class="pull">
+      <p class="quote">Green members' Stars expire six months after the month they were earned — but can be extended by one month, <strong>indefinitely</strong>, with a single qualifying purchase, redemption, or $30+ digital reload. Gold and Reserve Stars never expire.</p>
+    </div>
+    <p>Benchmarked against Dunkin', McDonald's, Dutch Bros and Panera, that is the <strong>only conditionally renewable expiry rule in the category</strong> — functionally the most forgiving policy any of them offers. It is also invisible unless you read the terms, which is precisely what the lowest-frequency members are least likely to do.</p>
+    <div class="pull">
+      <p><strong>Best-in-category benefit. Hypothesised worst-in-category awareness.</strong> That gap is the campaign.</p>
+    </div>
+    <p>So the proposal is not another offer. It is a personalised reminder that costs nothing to give:</p>
+    <div class="pull">
+      <p class="quote"><em>You have 85 Stars. They start expiring on 31 March. That's your usual Grande Vanilla Latte, on us. Any visit this month keeps them.</em></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">The question</p>
+    <h2>Growth and the relaunch happened in the same window</h2>
+    <div class="grid">
+      <div class="card"><div class="n">+7.9%</div><div class="l">U.S. comparable store sales, Q3 FY2026</div></div>
+      <div class="card"><div class="n">+4.2%</div><div class="l">of which comparable transactions</div></div>
+      <div class="card"><div class="n">35.5M</div><div class="l">90-day active U.S. Rewards members (Q1 FY2026)</div></div>
+    </div>
+    <p>Menu, pricing, throughput, seasonality and the loyalty relaunch all moved together. Without a holdout, none of that lift can be attributed to the program — and an attribution error does not stay small. It compounds every time the company scales what it believes worked.</p>
+    <div class="pull">
+      <p class="quote">Five months after the relaunch, how much of the change in low-frequency Green member behaviour is genuinely incremental — and can it be grown profitably without further discounting?</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Design</p>
+    <h2>Sample size was calculated, not asserted</h2>
+    <figure>
+      <img src="figures/01_power_curve.png" alt="Minimum detectable effect against pilot size across dispersion assumptions">
+      <figcaption>Minimum detectable lift by pilot size, across dispersion assumptions</figcaption>
+    </figure>
+    <p>The outcome is a count and an over-dispersed one, so variance is modelled as negative binomial rather than Poisson. Dispersion cannot be known without internal data, so every result is reported across a range. Two primary comparisons are planned, so α is Bonferroni-corrected to 0.025.</p>
+    <div class="grid">
+      <div class="card"><div class="n">30,000</div><div class="l">sufficient at the most severe dispersion tested</div></div>
+      <div class="card"><div class="n">100,000</div><div class="l">the original plan — roughly 3&times; more power than the decision needs</div></div>
+      <div class="card"><div class="n">70%</div><div class="l">cheaper, and the holdout becomes defensible</div></div>
+    </div>
+    <p class="note">Surplus power is not free. Every extra member sitting in a holdout is forgone revenue — which is exactly why the calculation is worth running before the test rather than after.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Economics</p>
+    <h2>Why not simply discount</h2>
+    <table>
+      <tr><th>Activation</th><th>Net at 5% lift</th><th>Net at 10% lift</th></tr>
+      <tr><td>5%</td><td class="pos">+$262</td><td class="pos">+$4,725</td></tr>
+      <tr><td>10%</td><td class="neg">&minus;$3,937</td><td class="pos">+$525</td></tr>
+      <tr><td>20%</td><td class="neg">&minus;$12,337</td><td class="neg">&minus;$7,875</td></tr>
+    </table>
+    <p>Per 10,000 members over 12 weeks, a $2-off campaign is profitable only when <strong>few people use it</strong>. The marketing definition of success — high activation — is the financial definition of failure.</p>
+    <p>That is the argument for a mechanic with no incremental incentive at all.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">The cost nobody budgets for</p>
+    <h2>A campaign with no discount still has a cost</h2>
+    <figure>
+      <img src="figures/02_breakeven.png" alt="Breakeven transaction lift against share of expiring Stars rescued">
+      <figcaption>Breakeven lift as a function of how many otherwise-expiring Stars the campaign rescues</figcaption>
+    </figure>
+    <p>Under standard loyalty accounting, unredeemed Stars sit as deferred revenue and are recognised as revenue when they expire — <strong>breakage</strong>. A campaign that stops Stars from expiring converts recognised revenue back into an obligation to serve. That cost never appears on a marketing budget, which is exactly why it gets missed.</p>
+    <div class="pull">
+      <p><strong>The ≈5% target uses the conservative <code>stock</code> pool.</strong> At 10% breakage rescue, breakeven is 5.3% if the member's full six-month Star balance (~76 Stars) is exposed; the operationally narrower <code>flow</code> pool (~36 Stars reaching expiry in-window) breaks even at 3.0%.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Results</p>
+    <h2>Including the failure mode</h2>
+    <figure>
+      <img src="figures/04_simulated_results.png" alt="Simulated results for two scenarios with confidence intervals and net contribution">
+      <figcaption>Simulated pilot &mdash; demonstrates the decision machinery, not Starbucks results</figcaption>
+    </figure>
+    <p>Two scenarios are simulated from known parameters. The second is the one worth reading, because a framework that only demonstrates its own success is a brochure.</p>
+    <div class="grid">
+      <div class="card"><div class="n">+7.1%</div><div class="l"><strong>Scenario A</strong> — lift vs holdout, clears breakeven. Net +$1,194. <strong>Scale.</strong></div></div>
+      <div class="card"><div class="n red">&minus;$7,210</div><div class="l"><strong>Scenario B</strong> — activation hits 17%, transactions barely move. <strong>Do not scale.</strong></div></div>
+    </div>
+    <div class="pull">
+      <p>The decision rule catches scenario B. <strong>A click-through dashboard would have called it a win.</strong></p>
+    </div>
+    <figure>
+      <img src="figures/05_dashboard.png" alt="Holdout dashboard comparing activation, transaction lift, net contribution and the pre-registered decision">
+      <figcaption>The same activation win becomes a stop decision when incrementality and economics are visible</figcaption>
+    </figure>
+    <p>That gap is the entire argument for holdout-based measurement, and it is why the primary metric is incremental contribution margin rather than any engagement metric.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Method</p>
+    <h2>What is in the repository</h2>
+    <table>
+      <tr><th>File</th><th>What it does</th></tr>
+      <tr><td><code>assumptions.py</code></td><td>Single source of truth. Every value carries an evidence label — public fact, case assumption, proposed target, or calculated.</td></tr>
+      <tr><td><code>power.py</code></td><td>Sample size and MDE for an over-dispersed count outcome, Bonferroni-corrected.</td></tr>
+      <tr><td><code>economics.py</code></td><td>Breakeven, the breakage model, and the discount comparison.</td></tr>
+      <tr><td><code>simulate.py</code></td><td>Three-arm simulation and the pre-registered decision machinery.</td></tr>
+      <tr><td><code>01_experiment_design.ipynb</code></td><td>The full walkthrough, executed end to end.</td></tr>
+    </table>
+    <p>Simulations are seeded to the program relaunch date, so every figure reproduces exactly.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="https://github.com/phay2712-web/starbucks-rewards-incrementality">Full analysis and source on GitHub</a></p>
+    <p class="disc">
+      Independent case study, August 2026. Based entirely on public information and simulated data. No figure on this page is Starbucks performance data. The gaps identified are <em>public evidence gaps</em>, not claims about internal capability. The breakage treatment follows standard loyalty accounting; Starbucks' specific revenue-recognition policy should be confirmed in the 10-K before this analysis is presented as more than a model.<br><br>
+      Starbucks, Starbucks Rewards and related marks are trademarks of Starbucks Corporation, used here for identification only in an unaffiliated academic case study. Released under the MIT License.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

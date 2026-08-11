@@ -1,0 +1,3 @@
+scenario,lift_vs_holdout,activation_rate,net_contribution,breakeven_lift,verdict,evidence_label
+A_personalisation_works,0.0706,0.0999,1193.5499999999993,0.05722689075630252,"SCALE — incremental, profitable, and within guardrails",CALCULATED
+B_engagement_without_behaviour,0.0193,0.1704,-7209.975,0.10008403361344537,DO NOT SCALE — no incremental transaction effect vs holdout,CALCULATED
