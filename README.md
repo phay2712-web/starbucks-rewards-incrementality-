@@ -1,6 +1,6 @@
 # The Stars They Already Earned
 
-[![Reproduce analysis](https://github.com/phay2712-web/starbucks-rewards-incrementality/actions/workflows/ci.yml/badge.svg)](https://github.com/phay2712-web/starbucks-rewards-incrementality/actions/workflows/ci.yml)
+[![Reproduce analysis](https://github.com/phay2712-web/starbucks-rewards-incrementality-/actions/workflows/ci.yml/badge.svg)](https://github.com/phay2712-web/starbucks-rewards-incrementality-/actions/workflows/ci.yml)
 
 **Growing profitable frequency among low-frequency Starbucks Rewards members — without a discount.**
 
@@ -217,7 +217,7 @@ The most load-bearing unknown in this entire model is the historical breakage ra
 ## Reproducing
 
 ```bash
-git clone https://github.com/phay2712-web/starbucks-rewards-incrementality.git
+git clone https://github.com/phay2712-web/starbucks-rewards-incrementality-.git
 cd starbucks-rewards-incrementality
 pip install -r requirements.txt
 make all           # or: python analysis/{power,economics,simulate,figures}.py
