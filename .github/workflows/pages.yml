@@ -1,4 +1,5 @@
 name: Deploy Starbucks Project to GitHub Pages
+# GitHub Pages source: GitHub Actions
 
 on:
   push:
